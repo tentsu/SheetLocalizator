@@ -1,0 +1,22 @@
+{
+  "name": "sheet-localizator",
+  "version": "0.1",
+  "description": "Simple library to parse Google Drive Sheet localizations to webpage",
+  "main": "SheetLocalizator.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tentsu/SheetLocalizator"
+  },
+  "keywords": [
+	"localization",
+	"google drive",
+	"sheet",
+	"spreadsheet"
+  ],
+  "author": "Tentsu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tentsu/SheetLocalizator/issues"
+  },
+  "homepage": "https://github.com/tentsu/SheetLocalizator"
+}

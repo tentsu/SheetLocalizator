@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>moi</title>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="SheetLocalizator.js"></script>
+
+	<script type="text/javascript">
+		function init() {
+			var SHEET_ID = '1nfkV9jr4d2_Ub7kKDTzPC43Qb3KYo4tMCILCeKMDp3M';
+			var localizations;
+
+			SheetLocalizator(SHEET_ID, 'RU', function(data) {
+				localizations = data;
+				console.log(localizations);
+			});
+		}
+	</script>
+</head>
+
+<body onLoad="init()">
+	<div class="result">
+
+		<button onClick="init()">init</button>
+
+		<pre>
+			<code class="localizations"></code>
+		</pre>
+	</div>
+</body>
+
+</html>

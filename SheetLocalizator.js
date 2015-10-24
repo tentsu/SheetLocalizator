@@ -30,7 +30,7 @@
 		var languageColumn = _getLanguageColumn(titles, language);
 
 		if (!languageColumn) {
-			return;
+			return {};
 		}
 
 		var keys = _getKeys(titles, cells);
@@ -40,7 +40,9 @@
 			var cell = _getCell(cells[i]);
 
 			if (cell.column === languageColumn) {
-				localizations[keys[cell.row]] = cell.title;
+				if (keys[cell.row]) {
+					localizations[keys[cell.row]] = cell.title;
+				}
 			}
 		}
 

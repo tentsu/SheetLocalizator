@@ -13,6 +13,12 @@
 		});
 	};
 
+
+	/**
+	 * Get sheet
+	 * @param {String} id - Sheet's id
+	 * @param {Function} callback - Method to to after HTTP request
+	 */
 	function _getSheet(id, callback) {
 		var r = new XMLHttpRequest();
 		r.open("GET", _getUrl(id), true);
@@ -23,6 +29,13 @@
 		r.send();
 	}
 
+
+	/**
+	 * Get localizations from specified language
+	 * @param {Array} cells - All the cells in sheet
+	 * @param {String} language - Code of the wanted localization language
+	 * @returns {Object} Localizations
+	 */
 	function _parseLocalizations(cells, language) {
 		language = language || 'FI';
 
@@ -50,6 +63,11 @@
 	}
 
 
+	/**
+	 * Get title cells from sheet
+	 * @param {Array} cells - All the cells in sheet
+	 * @returns {Array} Title row's cells 
+	 */
 	function _parseTitles(cells) {
 		var titles = [];
 
@@ -66,10 +84,21 @@
 	}
 
 
+	/**
+	 * Get url for sheet
+	 * @param {String} id - Sheet id
+	 * @returns {String} Url of sheet
+	 */
 	function _getUrl(id) {
 		return SHEET_URL.replace('SHEET_ID', id);
 	}
 
+
+	/**
+	 * Get pretty cell data 
+	 * @param {Object} cell - Cell with all of it's data
+	 * @returns {Object} Cell data
+	 */
 	function _getCell(cell) {
 		var letters = /[a-zA-Z]+/;
 		var numbers = /\d+/;
@@ -82,6 +111,12 @@
 	}
 
 
+	/**
+	 * Get column code of the given language
+	 * @param {Array} titles - Title row's cell data
+	 * @param {String} language - Language code
+	 * @returns {String} Localization's column code
+	 */
 	function _getLanguageColumn(titles, language) {
 		for (var i = 0; i < titles.length; i++) {
 			if (titles[i].title === language) {
@@ -93,6 +128,12 @@
 	}
 
 
+	/**
+	 * Get keys from sheet
+	 * @param {Array} titles - Title row's cell data
+	 * @param {Array} cells - All the cells in sheet
+	 * @returns {Object} Key values
+	 */
 	function _getKeys(titles, cells) {
 		var keys = {};
 

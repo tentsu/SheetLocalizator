@@ -1,20 +1,79 @@
-<!DOCTYPE html>
 <html>
-
 <head>
 	<meta charset="utf-8">
-	<title>moi</title>
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<title>SheetLocalizator demo</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font: 0.5em 'Trebuchet MS', Tahoma, Helvetica, Arial, sans-serif;
+
+			margin-right: auto;
+			margin-left: auto;
+			width: 768px;
+
+		}
+
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+			table-layout: justify;
+			width: 100%;
+		}
+
+		th, td {
+			border-bottom: 1px solid #ddd;
+		}
+
+		td {
+			padding: 10px;
+			width: 80%;
+		}
+
+		td:first-child {
+			width: 20%;
+		}
+
+		tbody tr:nth-child(even) {
+			background-color: #C1ECE4;
+		}
+
+		tbody tr:nth-child(odd) {
+			background-color: #FCFCFC;
+		}
+	</style>
 	<script type="text/javascript" src="SheetLocalizator.js"></script>
 
 	<script type="text/javascript">
-		function init() {
-			var SHEET_ID = '1nfkV9jr4d2_Ub7kKDTzPC43Qb3KYo4tMCILCeKMDp3M';
-			var localizations;
+		var SETTINGS = {
+			'id': '1nfkV9jr4d2_Ub7kKDTzPC43Qb3KYo4tMCILCeKMDp3M',
+			'keyColumn': 'KEY',
+		};
 
-			SheetLocalizator(SHEET_ID, 'FI', function(data) {
-				localizations = data;
-				console.log(localizations);
+		function init() {
+			getLocalizations('FI');
+		}
+
+		function getLocalizations (language) {
+
+			SheetLocalizator(SETTINGS.id, language, function(data) {
+				console.log(data);
+
+				var table = document.getElementById('localizations');
+				var headRow = '<thead><tr><td>'+ SETTINGS.keyColumn +'</td><td>' + language +'</td></tr></thead>';
+				var localizationsRows = '<tbody>';
+
+				for (var term in data) {
+					localizationsRows += '<tr><td>' + term + '</td><td>' + data[term] + '</td></tr>';
+				}
+
+				localizationsRows += '</tbody>';
+
+				table.innerHTML = headRow + localizationsRows;
 			});
 		}
 	</script>
@@ -23,12 +82,16 @@
 <body onLoad="init()">
 	<div class="result">
 
-		<button onClick="init()">init</button>
+		<button onClick="getLocalizations('FI')">Finnish</button> 
+		<button onClick="getLocalizations('EN')">English</button>
 
-		<pre>
-			<code class="localizations"></code>
-		</pre>
+		<table id="localizations">
+			<thead>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+
 	</div>
 </body>
-
 </html>
